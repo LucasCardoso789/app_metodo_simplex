@@ -13,8 +13,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::Resource('calculo', App\Http\Controllers\CalculoController::class);
+Route::Resource('/', App\Http\Controllers\CalculoController::class);
