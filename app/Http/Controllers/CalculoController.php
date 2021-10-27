@@ -14,7 +14,7 @@ class CalculoController extends Controller
      */
     public function index()
     {
-        return 'calculo';
+        return view('calculo');
     }
 
     /**
@@ -80,6 +80,6 @@ class CalculoController extends Controller
      */
     public function destroy(calculo $calculo)
     {
-        //
+        // 
     }
 }
