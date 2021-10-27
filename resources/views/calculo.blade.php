@@ -9,10 +9,19 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="btn-group" role="group" aria-label="Basic example">
-    <button type="button" class="btn btn-primary">Joao</button>
-    <button type="button" class="btn btn-primary">Pedro</button>
-    <button type="button" class="btn btn-primary">Leite</button>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="container">
+
+    <form action="problema.php" method="get" style="text-align:center;">
+        <p>Quantas variáveis?  <input id ="v" name="v" type="text" size="5"></p>
+        <p>Quantas restrições?  <input id ="r" name="r" type="text" size="5"></p>
+        <p><input class="btn btn-primary" type="submit" name="Submit" value="Continuar"></p>
+    </form>
+
     </div>
 </body>
 </html>
