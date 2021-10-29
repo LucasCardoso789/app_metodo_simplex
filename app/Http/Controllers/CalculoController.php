@@ -14,6 +14,7 @@ class CalculoController extends Controller
      */
     public function index()
     {
+        
         return view('calculo');
     }
 
