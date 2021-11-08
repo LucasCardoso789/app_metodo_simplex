@@ -13,4 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::Resource('/', App\Http\Controllers\CalculoController::class);
+Route::get('/', function () {
+    return redirect()->route('calculo.index');
+});
+
+Route::Resource('calculo', App\Http\Controllers\CalculoController::class);
+
+

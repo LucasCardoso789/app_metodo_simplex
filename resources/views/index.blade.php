@@ -15,31 +15,33 @@
     <br>
     <br>
     <br>
-    <div class=" d-flex justify-content-center p-2 ">
+    <div class=" d-flex justify-content-center p-4 ">
             <div class="d-flex justify-content-center bg-white rounded-3 border shadow-lg" >
-                <div class="row p-5  " >
+                <div class="row p-5" style="min-width:350px;">
 
-                    <form class="">
+                    <form action="{{ route('calculo.store') }}" method="post">
+                    @csrf
                         <div class=" d-flex justify-content-center mb-9 pb-3">
                             <div class="col-md-9">
-                                <label for="exampleInputEmail1" class="form-label">Número de variáveis:</label>
-                                <input type="number" class="form-control" id="variableNumber" placeholder="Digite um Número">
+                                <label for="exampleInputEmail1" class="form-label">Número de Variáveis:</label>
+                                <input type="number" name="variavel" class="form-control" id="variableNumber" placeholder="Digite um Número" required min="2" max="100">
                             <div id="emailHelp" class="form-text">Os valores tem limite de 100</div>
                             </div>
                         </div>
 
-                        <div class=" d-flex justify-content-center mb-9 pb-4">
+                        <div class=" d-flex justify-content-center mb-9 pb-3">
                             <div class="col-md-9">
                                 <label for="exampleInputEmail1" class="form-label">Número de Restrições:</label>
-                                <input type="number" class="form-control" id="variableNumber" placeholder="Digite um Número">
+                                <input type="number" name="restricao" class="form-control" id="variableNumber" placeholder="Digite um Número" required min="3" max="10">
                             </div>
 
                         </div>
 
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" class="btn btn-dark btn-lg text-light mb-9">Continuar</button>
+                        </div>
+
                     </form>
-                    <div class="d-flex justify-content-center">
-                        <button type="button" class="btn btn-dark btn-lg text-light mb-9">Continuar</button>
-                    </div>
                 </div>
 
 

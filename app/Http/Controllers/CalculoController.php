@@ -14,18 +14,30 @@ class CalculoController extends Controller
      */
     public function index()
     {
-        
-        return view('calculo');
+       
+        return view('index'); 
+
     }
+
+
+
+    public function store(Request $request)
+    {
+
+        dd($request->all());
+
+    }
+
+    
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -34,10 +46,9 @@ class CalculoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
-    }
+
+
+    
 
     /**
      * Display the specified resource.
@@ -45,9 +56,10 @@ class CalculoController extends Controller
      * @param  \App\Models\calculo  $calculo
      * @return \Illuminate\Http\Response
      */
-    public function show(calculo $calculo)
+    public function show(Request $request)
     {
         //
+        
     }
 
     /**
