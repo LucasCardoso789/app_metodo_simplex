@@ -27,119 +27,64 @@
                   <div class="receive-content">
 
 
-                            <div class=" d-inline-flex input-group row">
-                                <div class="col-2">
-                                    <input type="number" class="form-control" placeholder="z1">
-                                </div>
-                                +
-                                <div class="col-2">
-                                    <input type="number" class="form-control" placeholder="z2">
 
-                                </div>
-                                +
+                <div class=" d-inline-flex input-group row">
+                    
+                        @for($i=1; $i <= $quant_var; $i++)
+                        <div class="col-2">
+						    <input type="number" class="form-control" placeholder="z{{$i}}" id='z[{{$i}}]' name='z[{{$i}}]'>
+                        </div>
+                        @if($i != $quant_var) +
+                        @endif
+                        @endfor
+                    
+                </div>
+                
 
-                                <div class="col-2">
-                                    <input type="number" class="form-control" placeholder="z3">
-                                </div>
-
-                            </div>
-
-
-                  </div>
+                </div>
                     <h5 class="restricoes-title">Restrições:</h5>
-                    <h6 class="restricoes-sub-title">Restrição 1:</h6>
 
-                  <div class="d-inline-flex input-group row " >
-                        <div class="col-2">
-                            <input type="number" class="form-control" placeholder="x1">
-                        </div>
-                        +
-                        <div class="col-2">
-                            <input type="number" class="form-control" placeholder="x2">
 
-                        </div>
-                        +
+                    @for($i=0; $i < $quant_res; $i++)
+                        <h6 class="restricoes-sub-title">Restrição {{$i+1}}:</h6>
+                            @for($j=0; $j <= $quant_var-1; $j++)   
+                                @if($j != $quant_var-1)
+                                    <div class="col-2">
+                                        <input type="number" class="form-control"  placeholder="x{{$j+1}}" id='res[{{$i}}][{{$j}}]' name='res[{{$i}}][{{$j}}]'>
+                                    </div>
 
-                        <div class="col-2">
-                            <input type="number" class="form-control" placeholder="x3">
-                        </div>
-                        <select id="sinal-1" class="form-select">
-                            <option value="≤">≤</option>
-                            <option value="≥">≥</option>
-                            <option value="=">=</option>
-                        </select>
-                        <div class="col-2">
-                            <input type="number" id="resultado-restr" class="form-control">
-                        </div>
+                                   +
 
-                   </div>
+                                    
+                                    @else
+                                    <div class="col-2">
+                                    <input type="number" class="form-control" placeholder="x{{$j+1}}" id='res[{{$i}}][{{$j}}]' name='res[{{$i}}][{{$j}}]'>
+                                    </div> 
+                                    
+                                    
+                                
 
-                   <h6 class="restricoes-sub-title">Restrição 2:</h6>
+                                    <div class="col-2">
+                                    <select id="sinal-1" class="form-select">
+                                        <option value="≤">≤</option>
+                                        <option value="≥">≥</option>
+                                        <option value="=">=</option>
+                                    </select>
+                                    </div>  
 
-                   <div class="d-inline-flex input-group row " >
-                         <div class="col-2">
-                             <input type="number" class="form-control" placeholder="x1">
-                         </div>
-                         +
-                         <div class="col-2">
-                             <input type="number" class="form-control" placeholder="x2">
-
-                         </div>
-                         +
-
-                         <div class="col-2">
-                             <input type="number" class="form-control" placeholder="x3">
-                         </div>
-                         <select id="sinal-1" class="form-select">
-                             <option value="≤">≤</option>
-                             <option value="≥">≥</option>
-                             <option value="=">=</option>
-                         </select>
-                         <div class="col-2">
-                             <input type="number" id="resultado-restr" class="form-control">
-                         </div>
-
-                    </div>
-
-                    <h6 class="restricoes-sub-title">Restrição 3:</h6>
-
-                    <div class="d-inline-flex input-group row " >
-                          <div class="col-2">
-                              <input type="number" class="form-control" placeholder="x1">
-                          </div>
-                          +
-                          <div class="col-2">
-                              <input type="number" class="form-control" placeholder="x2">
-
-                          </div>
-                          +
-
-                          <div class="col-2">
-                              <input type="number" class="form-control" placeholder="x3">
-                          </div>
-                          <select id="sinal-1" class="form-select">
-                              <option value="≤">≤</option>
-                              <option value="≥">≥</option>
-                              <option value="=">=</option>
-                          </select>
-                          <div class="col-2">
-                              <input type="number" id="resultado-restr" class="form-control">
-                          </div>
-
-                     </div>
+                                    <div class="col-2">
+                                    <input type="number" class="form-control" id='ld[{{$i}}]' name='ld[{{$i}}]' value='0'>
+                                    </div>  
+                                @endif                    
+                            @endfor     
+                    @endfor
 
                      <div class="d-flex justify-content-center">
                         <button type="submit" class="btn btn-dark btn-lg text-light mb-9 submit-button">Resolver</button>
                     </div>
 
             </div>
-
-
-
-
         </div>
-
-
     </div>
 </body>
 </html>

@@ -24,8 +24,13 @@ class CalculoController extends Controller
     public function store(Request $request)
     {
 
-        //dd($request->all());
-        return view('calc');
+
+        $quant_var = $request->variavel;
+        $quant_res = $request->restricao;
+
+        //dd($request->variavel);
+        
+        return view('calc', ['quant_var' => $quant_var, 'quant_res' => $quant_res]);
 
     }
 
