@@ -1,4 +1,4 @@
-# Sistema de Controle Geral - DTI
+# Método Simplex
 
 ## Requisitos
 
