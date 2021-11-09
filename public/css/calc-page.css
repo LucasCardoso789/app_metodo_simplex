@@ -1,0 +1,74 @@
+body{
+    background-color: #ECFEAA;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#main-div{
+     /* border: 1px solid red; */
+
+    /*min-height: fit-content;
+    min-width: fit-content; */
+}
+.box-content {
+    display: flex;
+    justify-content: center;
+    min-width: 800px;
+    max-width: 980px;
+    /* border: 1px solid blueviolet; */
+}
+
+.form-select {
+    max-width: 200px;
+    font-weight: bold;
+}
+
+.objective-main-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-weight: bold;
+    margin-bottom: 15px;
+    margin-top: 0;
+}
+
+.objective-funtion-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 25px;
+}
+
+.receive-content {
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.restricoes-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+.restricoes-sub-title {
+    margin-top: 20px;
+}
+
+.submit-button {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    font-weight: bold;
+}
