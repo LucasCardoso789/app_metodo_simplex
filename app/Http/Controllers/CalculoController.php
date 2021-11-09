@@ -24,7 +24,8 @@ class CalculoController extends Controller
     public function store(Request $request)
     {
 
-        dd($request->all());
+        //dd($request->all());
+        return view('calc');
 
     }
 
