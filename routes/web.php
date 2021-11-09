@@ -17,6 +17,10 @@ Route::get('/', function () {
     return redirect()->route('calculo.index');
 });
 
+
+
 Route::Resource('calculo', App\Http\Controllers\CalculoController::class);
 
-
+Route::get('/calc', function() {
+    return view('calc');
+});
