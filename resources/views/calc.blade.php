@@ -60,8 +60,6 @@
                                     <div class="col-2">
                                     <input type="number" class="form-control" placeholder="x{{$j+1}}" id='res[{{$i}}][{{$j}}]' name='res[{{$i}}][{{$j}}]'>
                                     </div> 
-                                    
-                                    
                                 
 
                                     <div class="col-2">
