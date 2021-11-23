@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\calculo;
 use Illuminate\Http\Request;
 
-class CalculoController extends Controller
+class ResultadoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,36 +13,17 @@ class CalculoController extends Controller
      */
     public function index()
     {
-       
-        return view('index'); 
-
-    }
-
-
-
-    public function store(Request $request)
-    {
-
-
-        $quant_var = $request->variavel;
-        $quant_res = $request->restricao;
-
-        //dd($request->variavel);
         
-        return view('calc', ['quant_var' => $quant_var, 'quant_res' => $quant_res]);
-
     }
-
-    
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
-        
+        //
     }
 
     /**
@@ -52,29 +32,38 @@ class CalculoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function store(Request $request)
+    {
 
+        $z = $request->z;
+        $res = $request->res;
+        $ld = $request->ld;
 
-    
+        print_r($z);
+        
+
+        return view('result', ['z' => $z, 'res' => $res, 'ld' => $ld]);
+
+    }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\calculo  $calculo
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
+    public function show($id)
     {
-        
-        
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\calculo  $calculo
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(calculo $calculo)
+    public function edit($id)
     {
         //
     }
@@ -83,10 +72,10 @@ class CalculoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\calculo  $calculo
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, calculo $calculo)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -94,11 +83,11 @@ class CalculoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\calculo  $calculo
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(calculo $calculo)
+    public function destroy($id)
     {
-        // 
+        //
     }
 }

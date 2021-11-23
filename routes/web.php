@@ -21,6 +21,4 @@ Route::get('/', function () {
 
 Route::Resource('calculo', App\Http\Controllers\CalculoController::class);
 
-Route::get('/calc', function() {
-    return view('calc');
-});
+Route::Resource('resultado', App\Http\Controllers\ResultadoController::class);

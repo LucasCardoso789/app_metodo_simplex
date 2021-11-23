@@ -19,7 +19,7 @@
             <div class="d-flex justify-content-center bg-white rounded-3 border shadow-lg" >
                 <div class="row p-5" style="min-width:350px;">
 
-                    <form action="{{ route('calculo.store') }}" method="post">
+                    <form action="{{ route('calculo.store') }}" method="post"> 
                     @csrf
                         <div class=" d-flex justify-content-center mb-9 pb-3">
                             <div class="col-md-9">
