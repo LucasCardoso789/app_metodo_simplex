@@ -59,7 +59,7 @@
 
 
                                         @else
-                                        <div class="col-1"php>
+                                        <div class="col-1">
                                         <input type="number" class="form-control" placeholder="x{{$j+1}}" id='res[{{$i}}][{{$j}}]' name='res[{{$i}}][{{$j}}]'>
                                         </div>
 
