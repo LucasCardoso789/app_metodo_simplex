@@ -48,7 +48,7 @@ class ResultadoController extends Controller
 
             // linha Z
             for ($i=0; $i < $cz; $i++) {
-                $z[$i] = array_values(intval($z[$i]));
+                $z[$i] = intval($z[$i]);
             }
 
             for ($i=0; $i < $cz; $i++) {
