@@ -43,9 +43,10 @@ class ResultadoController extends Controller
         $ld = $request->ld;
         $v = $request->quant_var;
         $r = $request->quant_res;
+        $a = 0;
         
 
-        return view('result', ['z' => $z, 'res' => $res, 'ld' => $ld, 'v' => $v, 'r' => $r]);
+        return view('result', ['z' => $z, 'res' => $res, 'ld' => $ld, 'v' => $v, 'r' => $r, 'zp' => $a]);
 
     }
 
