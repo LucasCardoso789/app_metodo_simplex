@@ -18,275 +18,296 @@
 
 <body>
 
-    {{-- conta da linha Z --}}
-    {{ $cz = count($z) }}
-
-    {{-- linha Z --}}
-	{{-- @php
-    for($i = 0; $i < $cz; $i++)
-		$z[$i] = intval($z[$i])
-	@endphp --}}
-
-	@foreach($z as $item)
-		{{$item = intval($item)}}
-	@endforeach
-		
-
-    {{-- @for ($i = 0; $i < $cz; $i++)
-        {{ $z[$i] = $z[$i] * -1 }}
-    @endfor --}}
-
-	@foreach($z as $item)
-		{{$item = $item* -1}}
-	@endforeach
-
-    {{ array_unshift($z, 1) }}
-
-    @for ($i = $cz + 1; $i <= $cz + $r + 1; $i++)
-        {{ $z[$i] = 0 }}
-    @endfor
-
-    {{ $cz = count($z) }}
-    {{-- /*-----------------------------------*/ --}}
-
-    {{-- linhas lado direito --}}
-    @for ($i = 0; $i < $r; $i++)
-        {{ $ld[$i] = intval($ld[$i]) }}
-    @endfor
-    {{-- /*-----------------------------------*/ --}}
-
-    {{-- linhas da restrições --}}
-    @for ($i = 0; $i < $r; $i++)
-        {{ array_unshift($res[$i], 0) }}
-    @endfor
-
-    {{ $vf = $v + 1 }}
-
-    @for ($i = 0; $i < $r; $i++)
-        {{ array_unshift($res[$i], $i + $vf) }}
-    @endfor
-
-    {{-- conta de restrições da coluna --}}
-    {{ $crc = count($res) }}
-
-    {{-- matriz identidade --}}
-    @for ($i = 0; $i < $r; $i++)
-        @for ($j = 0; $j < $r; $j++)
-            @if ($i == $j)
-                {{ $res[$i][] = 1 }}
-            @else
-                {{ $res[$i][] = 0 }}
-            @endif
-
-        @endfor
-        {{ $res[$i][] = $ld[$i] }}
-    @endfor
-
-    {{-- conta de restrições da linha --}}
-    {{ $crl = count($res[0]) }}
-
-    @for ($i = 0; $i < $crc; $i++)
-        @for ($j = 0; $j < $crl; $j++)
-            {{ $res[$i][$j] = intval($res[$i][$j]) }}
-        @endfor
-    @endfor
-    {{-- /*---------------------------------------*/ --}}
-
-    @php
-        function min_not_zero(array $array)
-        {
-            return min(array_diff(array_map('intval', $array), [0]));
-        }
-    @endphp
-
-    <div class="container">
-        <br>
-        <br>
-        <br>
+    <?php
 
 
-        {{ $it = 0 }}
+// conta da linha Z
+$cz = count($z);
 
+// linha Z
 
-        {{ print_r($zp) }}
+foreach($z as $item){
+	$item = intval($item);
+}
 
-        @while ($zp < 3)
-            <h5>Iteração {{ $it }}</h5>
+foreach($z as $item){
+	$item = $item* -1;
+}
 
+array_unshift($z, 1);
 
-            <table class="table table-bordered">
-                <thead class="text-white" style="background-color: #0d6efd!important;">
-                    <tr>
-                        <th scope="col">Linha</th>
-                        <th scope="col">Base</th>
-                        <th scope="col">Z</th>
+for ($i=$cz+1; $i <= $cz+$r+1; $i++) {
+	$z[$i] = 0;
+}
 
-                        @for ($i = 1; $i <= $v; $i++)
-                            <th scope='col'>X{{ $i }}</th>
-                        @endfor
-                        @for ($i = $vf; $i < $r + $vf; $i++)
-                            <th scope='col'>X{{ $i }}</th>
-                        @endfor
+$cz = count($z);
+/*-----------------------------------*/
 
-                        <th scope="col">Lado Direito</th>
-                    </tr>
-                </thead>
-                <tbody>
+// linhas lado direito
+for ($i=0; $i < $r; $i++) {
+	$ld[$i] = intval($ld[$i]);
+}
+/*-----------------------------------*/
 
-                    <tr>
-                        <td>0</td>
-                        <td>Z</td>
+// linhas da restrições
+for ($i=0; $i < $r; $i++) {
+	array_unshift($res[$i], 0);
+}
 
-                        @for ($i = 0; $i < $cz; $i++)
-                            <td>{{ $z[$i] }}</td>
-                        @endfor
+$vf = $v+1;
 
-                        {{ $c = $r }}
-                        @for ($i = 0; $i < $c; $i++)
-                    <tr>
-                        <td>{{ $i + 1 }}</td>
-                        <td>X {{ $res[$i][0] }}</td>
+for ($i=0; $i < $r; $i++) {
+	array_unshift($res[$i], $i+$vf);
+}
 
-                        @for ($j = 1; $j < $crl; $j++)
-                            <td>
-                                {{ $res[$i][$j] }}
-                            </td>
-                        @endfor
-                    </tr>
-        @endfor
+// conta de restrições da coluna
+$crc = count($res);
 
-        {{-- z de parada --}}
-        {{ $zp = min($z) }}
+// matriz identidade
+for ($i=0; $i < $r; $i++) {
+	for ($j=0; $j < $r; $j++) {
+		if ($i == $j) {
+			$res[$i][] = 1;
+		} else {
+			$res[$i][] = 0;
+		}
+	}
+	$res[$i][] = $ld[$i];
+}
 
-        {{-- lado direito dividido --}}
-        {{ $ldd = [] }}
+// conta de restrições da linha
+$crl = count($res[0]);
 
-        {{-- posição do menor de Z - linha de z --}}
-        {{ $lz = array_search(min($z), $z) }}
+for ($i=0; $i < $crc; $i++) {
+	for ($j=0; $j < $crl; $j++) {
+		$res[$i][$j] = intval($res[$i][$j]);
+	}
+}
+/*---------------------------------------*/
 
-        {{-- posição do menor de Z + 1 - linha de z para restrição --}}
-        {{ $lzr = array_search(min($z), $z) + 1 }}
-        @for ($i = 0; $i < $crc; $i++)
+function min_not_zero(Array $array) {
+	return min(array_diff(array_map('intval', $array), array(0)));
+}
 
-            @if ($res[$i][$lzr] == 0)
-                {{ $ldd[$i] = 0 }}
-            @else
-                {{ $ldd[$i] = $res[$i][$crl - 1] / $res[$i][$lzr] }}
-            @endif
-        @endfor
+?>
+<div class="container">
+	<br>
+	<br>
+	<br>
 
-        {{ $min_not = min_not_zero($ldd) }}
+	<?php
 
-        {{ $pivo = $res[array_search($min_not, $ldd)][$lzr] }}
+	$it = 0;
 
+	do {
 
-        {{-- posição do pivo das restrições linha --}}
-        {{ $lp = array_search($min_not, $ldd) }}
+		/*for ($i=0; $i < $cz; $i++) {
+			echo($z[$i]);
+		}
+		echo "<br>";
+		for ($i=0; $i < $crc; $i++) {
+			for ($j=0; $j < $crl; $j++) {
+				echo($res[$i][$j]);
+			}
+			echo "<br>";
+		}
+		echo "<br>";*/
 
-        {{-- linha que entra dividida pelo pivô --}}
-        @for ($i = $lp; $i <= $lp; $i++)
-            @for ($j = 0; $j < $crl; $j++)
-                @if ($j == 0) {
-                    {{ $res[$i][$j] = $lz }}
-                @else
-                    {{ $res[$i][$j] = $res[$i][$j] / $pivo }}
-                @endif
-            @endfor
-        @endfor
+		echo "<h5>Iteração $it</h5>";
+		?>
 
-        {{-- coluna pivo - buscar valores 0 --}}
-        {{ $cp = array_column($res, $lzr) }}
-        {{ $cpaux = [] }}
+		<table class="table table-bordered">
+			<thead class="text-white" style="background-color: #0d6efd!important;">
+				<tr>
+					<th scope="col">Linha</th>
+					<th scope="col">Base</th>
+					<th scope="col">Z</th>
+					<?php 
+					for ($i=1; $i <= $v; $i++) { 
+						echo "<th scope='col'>X$i</th>";
+					}
+					for ($i=$vf; $i < $r+$vf; $i++) {
+						echo "<th scope='col'>X$i</th>";
+					}
+					?>
+					<th scope="col">Lado Direito</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php
+				echo "<tr>
+				<td>0</td>
+				<td>Z</td>";
 
-        @foreach ($cp as $k => $v)
-            @if ($v == 0)
-                {{ $cpaux[] = $k }}
-            @endif
-        @endforeach
+				for ($i=0; $i < $cz; $i++) { 
+					echo"<td>",$z[$i],"</td>";
+				}
 
-        {{ $zaux = $z[$lz] * -1 }}
+				$c = ($r);
+				for ($i=0; $i < $c; $i++) { 
+					echo "<tr>
+					<td>",$i+1,"</td>";
+					echo "<td>X", $res[$i][0],"</td>";
 
-        {{ $laux = [] }}
+					for ($j=1; $j < $crl; $j++) {
+						echo "<td>";
+						echo ($res[$i][$j]);
+						echo "</td>";
+					}
+					echo "</tr>";
+				}
 
-        @for ($i = $lp; $i <= $lp; $i++)
-            @for ($j = $lz; $j < $crl; $j++)
-                {{ $laux[] = $res[$i][$j] * $zaux }}
-            @endfor
-        @endfor
-        {{ array_unshift($laux, 0) }}
+				// z de parada
+				$zp = min($z);
+				//print_r($zp);
 
-        {{-- nova linha z --}}
-        @if ($it >= 1)
-            @for ($i = 1; $i < $cz; $i++)
-                {{ $z[$i] = $laux[$i + 1] + $z[$i] }}
-            @endfor
-        @else
-            @for ($i = 1; $i < $cz; $i++)
-                {{ $z[$i] = $laux[$i] + $z[$i] }}
-            @endfor
-        @endif
-        {{-- /*----------------------------------*/ --}}
+				// lado direito dividido
+				$ldd = array();
 
-        {{ $raux = 0 }}
+				//posição do menor de Z - linha de z
+				$lz = array_search(min($z), $z);
 
-        {{-- encontrar as novas linhas das restrições --}}
-        @for ($i = 0; $i < $crc; $i++)
-            @for ($j = 2; $j < $crl; $j++)
-                @for ($k = 0; $k < count($cpaux); $k++)
-                    @if ($i == $cpaux[$k])
-                        @continue
-                    @elseif ($i == $lp)
-                        @continue
-                    @else
-                        {{ $pr = $i }}
-                        {{ $raux = $res[$i][$lzr] * -1 }}
-                    @endif
-                @endfor
-            @endfor
-        @endfor
+				//posição do menor de Z + 1 - linha de z para restrição
+				$lzr = array_search(min($z), $z)+1;
+				for ($i=0; $i < $crc; $i++) { 
+					//print_r($res[$i][$lzr]);
+					//print_r($res[$i][$crl-1]);
+					
+					if (($res[$i][$lzr])==0) {
+						$ldd[$i] = 0;
+					} else {
+						$ldd[$i] = ($res[$i][$crl-1])/($res[$i][$lzr]);
+					}
+				}
+				//print_r($ldd);
 
-        {{-- linha auxiliar do pivo para linha das restrições --}}
-        {{ $lraux[] = [] }}
+				$min_not = (min_not_zero($ldd));
 
-        @for ($i = $lp; $i <= $lp; $i++)
-            @for ($j = $lz; $j < $crl; $j++)
-                {{ $lraux[] = $res[$i][$j] * $raux }}
-            @endfor
-        @endfor
-        {{ array_unshift($lraux, 0) }}
+				$pivo = ($res[array_search($min_not, $ldd)][$lzr]);
+				//echo(array_search($min_not, $ldd));
 
-        @for ($i = 0; $i < count($lraux); $i++)
-            {{ $lraux[$i] = intval($lraux[$i]) }}
-        @endfor
+				//posição do pivo das restrições linha
+				$lp = array_search($min_not, $ldd);
 
-        @if (count($lraux) > $crl)
-            @for ($i = 0; $i < $crl; $i++)
-                {{ array_shift($lraux) }}
-            @endfor
-        @endif
+				// linha que entra dividida pelo pivô
+				for ($i=$lp; $i <= $lp; $i++) { 
+					for ($j=0; $j < $crl; $j++) {
+						if ($j == 0) {
+							$res[$i][$j] = $lz;
+						} else {
+							$res[$i][$j] = ($res[$i][$j]/$pivo);
+						}
+					}
+				}
 
-        {{ $lz = $lz + 1 }}
+				// coluna pivo - buscar valores 0
+				$cp = array_column($res, $lzr);
+				$cpaux = array();
 
-        @for ($i = $pr; $i <= $pr; $i++)
-            @for ($j = 0; $j < $crl; $j++)
-                {{ $res[$i][$j] = $res[$i][$j] + $lraux[$j] }}
-            @endfor
-        @endfor
+				foreach ($cp as $k => $v) {
+					if($v == 0){
+						$cpaux[] = $k;
+					}
+				}
+				
+				$zaux = $z[$lz]*-1;
 
-        {{ $it++ }}
+				$laux = array();
 
-        {{ $zm = max($z) }}
+				//print_r($zaux);
+				
+				for ($i=$lp; $i <= $lp; $i++) {
+					for ($j=$lz; $j < $crl; $j++) {
+						$laux[] = $res[$i][$j]*$zaux;
+					}
+				}
+				array_unshift($laux, 0);
 
-        </tbody>
-        </table>
-        <br>
-        {{ $a++ }}
-        @endwhile
+				// nova linha z
+				if ($it>=1) {
+					for ($i=1; $i < $cz; $i++) {
+						$z[$i] = $laux[$i+1] + $z[$i];
+					}
+				} else {
+					for ($i=1; $i < $cz; $i++) {
+						$z[$i] = $laux[$i] + $z[$i];
+					}
+				}
+				/*----------------------------------*/
 
-        <p class='fs-5 badge bg-primary text-wrap' style='width: 20rem;'>A solução ótima é Z = {{ $zm }}</p>
-        <br>
+				//print_r($laux);
 
-    </div>
+				$raux = 0;
+
+				// encontrar as novas linhas das restrições
+				for ($i=0; $i < $crc; $i++) {
+					for ($j=2; $j < $crl; $j++) {
+						for ($k=0; $k < count($cpaux); $k++) { 
+							if ($i == $cpaux[$k]) {
+								continue;
+							} elseif ($i == $lp) {
+								continue;
+							} else {
+								$pr = $i;
+								$raux = $res[$i][$lzr]*-1;
+							}
+						}
+					}
+				}
+
+				//print_r($raux);
+
+				// linha auxiliar do pivo para linha das restrições
+				$lraux[] = array();
+				//print_r($raux);
+
+				for ($i=$lp; $i <= $lp; $i++) {
+					for ($j=$lz; $j < $crl; $j++) {
+						$lraux[] = $res[$i][$j]*$raux;
+						//print_r($res[$i][$j]*$raux);
+					}
+				}
+				array_unshift($lraux, 0);
+
+				//print_r($lz);
+
+				for ($i=0; $i < count($lraux); $i++) {
+					$lraux[$i] = intval($lraux[$i]);
+				}
+
+				if((count($lraux)) > $crl) {
+					for ($i=0; $i < ($crl); $i++) {
+						array_shift($lraux);
+					}
+				}
+
+				$lz = $lz+1;
+
+				for ($i=$pr; $i <= $pr; $i++) { 
+					for ($j=0; $j < $crl; $j++) {
+						$res[$i][$j] = ($res[$i][$j]+$lraux[$j]);
+					}
+				}
+
+				//print_r($res);
+			
+				$it++;
+
+				$zm = max($z);
+				?>
+			</tbody>
+		</table>
+		<?php
+		echo "<br>";
+
+	} while ($zp<0);
+
+	echo "<p class='fs-5 badge bg-primary text-wrap' style='width: 20rem;'>A solução ótima é Z = $zm</p>";
+	echo "<br>";
+
+	?>
+
+</div>
 
 </body>
 
