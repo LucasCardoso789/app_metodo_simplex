@@ -14,7 +14,7 @@
 <body >
     <form action="{{ route('resultado.store') }}" method="post">
         @csrf
-    <div class=" d-flex justify-content-center p-4" id="main-div">
+        <div class=" d-flex justify-content-center p-4" id="main-div">
         <div class="d-flex justify-content-center bg-white rounded-3 border shadow-lg h-100" id="sub-div">
 
             <div class="row p-5 box-content w-100">
@@ -36,7 +36,7 @@
                             <div class="col-1">
                                 <input type="number" class="form-control" placeholder="z{{$i}}" id='z[{{$i}}]' name='z[{{$i}}]'>
                             </div>
-                            @if($i != $quant_var) +
+                            @if($i != $quant_var) + 
                             @endif
                             @endfor
 
@@ -76,6 +76,7 @@
 
                                         <div class="col-1 valor-final-restricao">
                                         <input type="number" class="form-control" id='ld[{{$i}}]' name='ld[{{$i}}]' value='0'>
+                                            
                                         </div>
                                     @endif
                                 @endfor
@@ -85,6 +86,10 @@
                      <div class="d-flex justify-content-center">
                         <button type="submit" class="btn btn-dark btn-lg text-light mb-9 submit-button">Resolver</button>
                     </div>
+
+                    <input type="number" class="form-control" id="1" name='quant_var' value='{{$quant_var}}' hidden>
+                    <input type="number" class="form-control" id="1" name='quant_res' value='{{$quant_res}}' hidden>
+                    
 
                 </div>
             </div>
