@@ -34,6 +34,8 @@ class ResultadoController extends Controller
      */
     public function store(Request $request)
     {
+
+        /* dd($request); */
         
 
         $z = $request->z;
@@ -43,7 +45,7 @@ class ResultadoController extends Controller
         $r = $request->quant_res;
         
 
-        return view('result', ['z' => $z, 'res' => $res, 'ld' => $ld]);
+        return view('result', ['z' => $z, 'res' => $res, 'ld' => $ld, 'v' => $v, 'r' => $r]);
 
     }
 
