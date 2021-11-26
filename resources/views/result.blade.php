@@ -89,7 +89,7 @@
 			}
 
 			?>
-			<div class="container">
+			<div class="container" style="background-color: white; border-radius: 0.3rem; box-shadow: -1px -2px 15px -6px rgba(0,0,0,0.75);">
 				<br>
 				<br>
 				<br>
@@ -115,14 +115,14 @@
 					echo "<h5>Iteração $it</h5>";
 					?>
 
-					<table class="table table-bordered">
-						<thead class="text-black">
-							<tr>
+					<table class="table table-bordered table-hover">
+						<thead class="">
+							<tr class="table-dark">
 								<th scope="col">Linha</th>
 								<th scope="col">Base</th>
 								<th scope="col">Z</th>
-								<?php 
-								for ($i=1; $i <= $v; $i++) { 
+								<?php
+								for ($i=1; $i <= $v; $i++) {
 									echo "<th scope='col'>X$i</th>";
 								}
 								for ($i=$vf; $i < $r+$vf; $i++) {
@@ -138,12 +138,12 @@
 							<td>0</td>
 							<td>Z</td>";
 
-							for ($i=0; $i < $cz; $i++) { 
+							for ($i=0; $i < $cz; $i++) {
 								echo"<td>",$z[$i],"</td>";
 							}
 
 							$c = ($r);
-							for ($i=0; $i < $c; $i++) { 
+							for ($i=0; $i < $c; $i++) {
 								echo "<tr>
 								<td>",$i+1,"</td>";
 								echo "<td>X", $res[$i][0],"</td>";
@@ -168,10 +168,10 @@
 
 							//posição do menor de Z + 1 - linha de z para restrição
 							$lzr = array_search(min($z), $z)+1;
-							for ($i=0; $i < $crc; $i++) { 
+							for ($i=0; $i < $crc; $i++) {
 								//print_r($res[$i][$lzr]);
 								//print_r($res[$i][$crl-1]);
-								
+
 								if (($res[$i][$lzr])==0) {
 									$ldd[$i] = 0;
 								} else {
@@ -189,7 +189,7 @@
 							$lp = array_search($min_not, $ldd);
 
 							// linha que entra dividida pelo pivô
-							for ($i=$lp; $i <= $lp; $i++) { 
+							for ($i=$lp; $i <= $lp; $i++) {
 								for ($j=0; $j < $crl; $j++) {
 									if ($j == 0) {
 										$res[$i][$j] = $lz;
@@ -208,13 +208,13 @@
 									$cpaux[] = $k;
 								}
 							}
-							
+
 							$zaux = $z[$lz]*-1;
 
 							$laux = array();
 
 							//print_r($zaux);
-							
+
 							for ($i=$lp; $i <= $lp; $i++) {
 								for ($j=$lz; $j < $crl; $j++) {
 									$laux[] = $res[$i][$j]*$zaux;
@@ -241,7 +241,7 @@
 							// encontrar as novas linhas das restrições
 							for ($i=0; $i < $crc; $i++) {
 								for ($j=2; $j < $crl; $j++) {
-									for ($k=0; $k < count($cpaux); $k++) { 
+									for ($k=0; $k < count($cpaux); $k++) {
 										if ($i == $cpaux[$k]) {
 											continue;
 										} elseif ($i == $lp) {
@@ -282,14 +282,14 @@
 
 							$lz = $lz+1;
 
-							for ($i=$pr; $i <= $pr; $i++) { 
+							for ($i=$pr; $i <= $pr; $i++) {
 								for ($j=0; $j < $crl; $j++) {
 									/* $res[$i][$j] = ($res[$i][$j]+$lraux[$j]); */
 								}
 							}
 
 							//print_r($res);
-						
+
 							$it++;
 
 							$zm = max($z);
@@ -301,7 +301,7 @@
 
 		} while ($zp<0);
 
-	echo "<p class='fs-5  text-wrap' style='width: 20rem white;'>A solução ótima é Z = $zm</p>";
+	echo "<p class='fs-5  text-wrap' style='width: 14rem; color:aliceblue; padding-left: 4px; background-color: rgb(19, 19, 19); border-radius: 0.1rem; '>A solução ótima é Z = $zm</p>";
 	echo "<br>";
 
 	?>
