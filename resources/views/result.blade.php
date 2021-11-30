@@ -25,12 +25,13 @@
 
 			// linha Z
 
-			foreach($z as $item){
-				$item = intval($item);
+			foreach($z as $key => $item){
+				$z[$key] = intval($item);
+				
 			}
 
-			foreach($z as $item){
-				$item = $item* -1;
+			foreach($z as $key => $item){
+				$z[$key] = $item* -1;
 			}
 
 			array_unshift($z, 1);
@@ -223,13 +224,17 @@
 							array_unshift($laux, 0);
 
 							// nova linha z
+							$quantLaux = count($laux);
+							/* ddd([
+							$z, $laux
+						]); */
 							if ($it>=1) {
 								for ($i=1; $i < $cz; $i++) {
-									/* $z[$i] = $laux[$i+1] + $z[$i]; */
+									$z[$i] = ($laux[$i+1]??0) + $z[$i];
 								}
 							} else {
 								for ($i=1; $i < $cz; $i++) {
-									/* $z[$i] = $laux[$i] + $z[$i]; */
+									$z[$i] = ($laux[$i]??0) + $z[$i];
 								}
 							}
 							/*----------------------------------*/
@@ -281,10 +286,11 @@
 							}
 
 							$lz = $lz+1;
+							$quantLraux = count($lraux);
 
 							for ($i=$pr; $i <= $pr; $i++) {
 								for ($j=0; $j < $crl; $j++) {
-									/* $res[$i][$j] = ($res[$i][$j]+$lraux[$j]); */
+									$res[$i][$j] = ($res[$i][$j]+($lraux[$j]??0));
 								}
 							}
 
