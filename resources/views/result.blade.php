@@ -16,7 +16,7 @@
     </script>
 </head>
 
-<body>
+<body style="height: 100%">
 		<?php
 
 
@@ -27,7 +27,7 @@
 
 			foreach($z as $key => $item){
 				$z[$key] = intval($item);
-				
+
 			}
 
 			foreach($z as $key => $item){
@@ -90,7 +90,7 @@
 			}
 
 			?>
-			<div class="container" style="background-color: white; border-radius: 0.3rem; box-shadow: -1px -2px 15px -6px rgba(0,0,0,0.75);">
+			<div class="container" style=" background-color: white; border-radius: 0.3rem; box-shadow: -1px -2px 15px -6px rgba(0,0,0,0.75); margin-top:20px; margin-bottom:20px;">
 				<br>
 				<br>
 				<br>
@@ -117,8 +117,8 @@
 					?>
 
 					<table class="table table-bordered table-hover">
-						<thead class="">
-							<tr class="table-dark">
+						<thead class="" style="background-color: #000">
+							<tr class="table-dark" style="background-color: #000;">
 								<th scope="col">Linha</th>
 								<th scope="col">Base</th>
 								<th scope="col">Z</th>
@@ -307,7 +307,7 @@
 
 		} while ($zp<0);
 
-	echo "<p class='fs-5  text-wrap' style='width: 14rem; color:aliceblue; padding-left: 4px; background-color: rgb(19, 19, 19); border-radius: 0.1rem; '>A solução ótima é Z = $zm</p>";
+	echo "<p class='fs-5  text-wrap' style='width: 16rem; height: 3rem; color:aliceblue; padding: 8px; background-color: rgb(19, 19, 19); border-radius: 0.1rem; text-align: center;'>A solução ótima é Z = $zm</p>";
 	echo "<br>";
 
 	?>
