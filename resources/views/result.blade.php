@@ -21,7 +21,7 @@
 
 
 			// conta da linha Z
-			$cz = count($z);
+			$contaz = count($z);
 
 			// linha Z
 
@@ -36,11 +36,11 @@
 
 			array_unshift($z, 1);
 
-			for ($i=$cz+1; $i <= $cz+$r+1; $i++) {
+			for ($i=$contaz+1; $i <= $contaz+$r+1; $i++) {
 				$z[$i] = 0;
 			}
 
-			$cz = count($z);
+			$contaz = count($z);
 			/*-----------------------------------*/
 
 			// linhas lado direito
@@ -54,14 +54,14 @@
 				array_unshift($res[$i], 0);
 			}
 
-			$vf = $v+1;
+			$variavelfolga = $v+1;
 
 			for ($i=0; $i < $r; $i++) {
-				array_unshift($res[$i], $i+$vf);
+				array_unshift($res[$i], $i+$variavelfolga);
 			}
 
 			// conta de restrições da coluna
-			$crc = count($res);
+			$calcrescol = count($res);
 
 			// matriz identidade
 			for ($i=0; $i < $r; $i++) {
@@ -76,10 +76,10 @@
 			}
 
 			// conta de restrições da linha
-			$crl = count($res[0]);
+			$calcreslin = count($res[0]);
 
-			for ($i=0; $i < $crc; $i++) {
-				for ($j=0; $j < $crl; $j++) {
+			for ($i=0; $i < $calcrescol; $i++) {
+				for ($j=0; $j < $calcreslin; $j++) {
 					$res[$i][$j] = intval($res[$i][$j]);
 				}
 			}
@@ -101,12 +101,12 @@
 
 				do {
 
-					/*for ($i=0; $i < $cz; $i++) {
+					/*for ($i=0; $i < $contaz; $i++) {
 						echo($z[$i]);
 					}
 					echo "<br>";
-					for ($i=0; $i < $crc; $i++) {
-						for ($j=0; $j < $crl; $j++) {
+					for ($i=0; $i < $calcrescol; $i++) {
+						for ($j=0; $j < $calcreslin; $j++) {
 							echo($res[$i][$j]);
 						}
 						echo "<br>";
@@ -126,7 +126,7 @@
 								for ($i=1; $i <= $v; $i++) {
 									echo "<th scope='col'>X$i</th>";
 								}
-								for ($i=$vf; $i < $r+$vf; $i++) {
+								for ($i=$variavelfolga; $i < $r+$variavelfolga; $i++) {
 									echo "<th scope='col'>X$i</th>";
 								}
 								?>
@@ -139,7 +139,7 @@
 							<td>0</td>
 							<td>Z</td>";
 
-							for ($i=0; $i < $cz; $i++) {
+							for ($i=0; $i < $contaz; $i++) {
 								echo"<td>",$z[$i],"</td>";
 							}
 
@@ -149,7 +149,7 @@
 								<td>",$i+1,"</td>";
 								echo "<td>X", $res[$i][0],"</td>";
 
-								for ($j=1; $j < $crl; $j++) {
+								for ($j=1; $j < $calcreslin; $j++) {
 									echo "<td>";
 									echo ($res[$i][$j]);
 									echo "</td>";
@@ -158,8 +158,8 @@
 							}
 
 							// z de parada
-							$zp = min($z);
-							//print_r($zp);
+							$zparada = min($z);
+							//print_r($zparada);
 
 							// lado direito dividido
 							$ldd = array();
@@ -169,14 +169,14 @@
 
 							//posição do menor de Z + 1 - linha de z para restrição
 							$lzr = array_search(min($z), $z)+1;
-							for ($i=0; $i < $crc; $i++) {
+							for ($i=0; $i < $calcrescol; $i++) {
 								//print_r($res[$i][$lzr]);
-								//print_r($res[$i][$crl-1]);
+								//print_r($res[$i][$calcreslin-1]);
 
 								if (($res[$i][$lzr])==0) {
 									$ldd[$i] = 0;
 								} else {
-									$ldd[$i] = ($res[$i][$crl-1])/($res[$i][$lzr]);
+									$ldd[$i] = ($res[$i][$calcreslin-1])/($res[$i][$lzr]);
 								}
 							}
 							//print_r($ldd);
@@ -187,11 +187,11 @@
 							//echo(array_search($min_not, $ldd));
 
 							//posição do pivo das restrições linha
-							$lp = array_search($min_not, $ldd);
+							$linhapivo = array_search($min_not, $ldd);
 
 							// linha que entra dividida pelo pivô
-							for ($i=$lp; $i <= $lp; $i++) {
-								for ($j=0; $j < $crl; $j++) {
+							for ($i=$linhapivo; $i <= $linhapivo; $i++) {
+								for ($j=0; $j < $calcreslin; $j++) {
 									if ($j == 0) {
 										$res[$i][$j] = $lz;
 									} else {
@@ -201,12 +201,12 @@
 							}
 
 							// coluna pivo - buscar valores 0
-							$cp = array_column($res, $lzr);
-							$cpaux = array();
+							$colunapivo = array_column($res, $lzr);
+							$colunapivoaux = array();
 
-							foreach ($cp as $k => $v) {
+							foreach ($colunapivo as $k => $v) {
 								if($v == 0){
-									$cpaux[] = $k;
+									$colunapivoaux[] = $k;
 								}
 							}
 
@@ -216,8 +216,8 @@
 
 							//print_r($zaux);
 
-							for ($i=$lp; $i <= $lp; $i++) {
-								for ($j=$lz; $j < $crl; $j++) {
+							for ($i=$linhapivo; $i <= $linhapivo; $i++) {
+								for ($j=$lz; $j < $calcreslin; $j++) {
 									$laux[] = $res[$i][$j]*$zaux;
 								}
 							}
@@ -229,11 +229,11 @@
 							$z, $laux
 						]); */
 							if ($it>=1) {
-								for ($i=1; $i < $cz; $i++) {
+								for ($i=1; $i < $contaz; $i++) {
 									$z[$i] = ($laux[$i+1]??0) + $z[$i];
 								}
 							} else {
-								for ($i=1; $i < $cz; $i++) {
+								for ($i=1; $i < $contaz; $i++) {
 									$z[$i] = ($laux[$i]??0) + $z[$i];
 								}
 							}
@@ -244,12 +244,12 @@
 							$raux = 0;
 
 							// encontrar as novas linhas das restrições
-							for ($i=0; $i < $crc; $i++) {
-								for ($j=2; $j < $crl; $j++) {
-									for ($k=0; $k < count($cpaux); $k++) {
-										if ($i == $cpaux[$k]) {
+							for ($i=0; $i < $calcrescol; $i++) {
+								for ($j=2; $j < $calcreslin; $j++) {
+									for ($k=0; $k < count($colunapivoaux); $k++) {
+										if ($i == $colunapivoaux[$k]) {
 											continue;
-										} elseif ($i == $lp) {
+										} elseif ($i == $linhapivo) {
 											continue;
 										} else {
 											$pr = $i;
@@ -265,8 +265,8 @@
 							$lraux[] = array();
 							//print_r($raux);
 
-							for ($i=$lp; $i <= $lp; $i++) {
-								for ($j=$lz; $j < $crl; $j++) {
+							for ($i=$linhapivo; $i <= $linhapivo; $i++) {
+								for ($j=$lz; $j < $calcreslin; $j++) {
 									$lraux[] = $res[$i][$j]*$raux;
 									//print_r($res[$i][$j]*$raux);
 								}
@@ -279,8 +279,8 @@
 								$lraux[$i] = intval($lraux[$i]);
 							}
 
-							if((count($lraux)) > $crl) {
-								for ($i=0; $i < ($crl); $i++) {
+							if((count($lraux)) > $calcreslin) {
+								for ($i=0; $i < ($calcreslin); $i++) {
 									array_shift($lraux);
 								}
 							}
@@ -289,7 +289,7 @@
 							$quantLraux = count($lraux);
 
 							for ($i=$pr; $i <= $pr; $i++) {
-								for ($j=0; $j < $crl; $j++) {
+								for ($j=0; $j < $calcreslin; $j++) {
 									$res[$i][$j] = ($res[$i][$j]+($lraux[$j]??0));
 								}
 							}
@@ -305,7 +305,7 @@
 					<?php
 					echo "<br>";
 
-		} while ($zp<0);
+		} while ($zparada<0);
 
 	echo "<p class='fs-5  text-wrap' style='width: 16rem; height: 3rem; color:aliceblue; padding: 8px; background-color: rgb(19, 19, 19); border-radius: 0.1rem; text-align: center;'>A solução ótima é Z = $zm</p>";
 	echo "<br>";

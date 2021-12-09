@@ -46,7 +46,7 @@ class ResultadoController extends Controller
         $a = 0;
         
 
-        return view('result', ['z' => $z, 'res' => $res, 'ld' => $ld, 'v' => $v, 'r' => $r, 'zp' => $a]);
+        return view('result', ['z' => $z, 'res' => $res, 'ld' => $ld, 'v' => $v, 'r' => $r, 'zparada' => $a]);
 
     }
 
