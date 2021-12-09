@@ -34,9 +34,9 @@
 
                             @for($i=1; $i <= $quant_var; $i++)
                             <div class="col-1">
-                                <input type="number" class="form-control" placeholder="z{{$i}}" id='z[{{$i}}]' name='z[{{$i}}]'>
+                                <input type="number" class="form-control" placeholder="x{{$i}}" id='z[{{$i}}]' name='z[{{$i}}]'>
                             </div>
-                            @if($i != $quant_var) + 
+                            @if($i != $quant_var) +
                             @endif
                             @endfor
 
@@ -76,7 +76,7 @@
 
                                         <div class="col-1 valor-final-restricao">
                                         <input type="number" class="form-control" id='ld[{{$i}}]' name='ld[{{$i}}]' value='0'>
-                                            
+
                                         </div>
                                     @endif
                                 @endfor
@@ -89,7 +89,7 @@
 
                     <input type="number" class="form-control" id="1" name='quant_var' value='{{$quant_var}}' hidden>
                     <input type="number" class="form-control" id="1" name='quant_res' value='{{$quant_res}}' hidden>
-                    
+
 
                 </div>
             </div>
