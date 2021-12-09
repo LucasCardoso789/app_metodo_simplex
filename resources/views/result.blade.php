@@ -137,7 +137,7 @@
 							<?php
 							echo "<tr>
 							<td>0</td>
-							<td>Z</td>";
+							<td>Z</td>"; 
 
 							for ($i=0; $i < $cz; $i++) {
 								echo"<td>",$z[$i],"</td>";
